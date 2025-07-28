@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iris Plant Predictor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🌸 Iris Plant Species Predictor using 🧠 Neural Networks</h1>
+        <p>Adjust the sliders to set the measurements of your Iris plant and predict its species 🌸.</p>
+    </header>
+
+    <main>
+        <section class="prediction-card">
+            <h2>Plant Measurements</h2>
+            <div class="input-group">
+                <label for="sepalLength">Sepal Length (cm):</label>
+                <input type="range" id="sepalLength" min="4" max="8" step="0.1" value="5.5">
+                <span id="sepalLengthValue" class="range-value">5.5</span>
+            </div>
+            <div class="input-group">
+                <label for="sepalWidth">Sepal Width (cm):</label>
+                <input type="range" id="sepalWidth" min="2" max="4.5" step="0.1" value="3.0">
+                <span id="sepalWidthValue" class="range-value">3.0</span>
+            </div>
+            <div class="input-group">
+                <label for="petalLength">Petal Length (cm):</label>
+                <input type="range" id="petalLength" min="1" max="7" step="0.1" value="4.0">
+                <span id="petalLengthValue" class="range-value">4.0</span>
+            </div>
+            <div class="input-group">
+                <label for="petalWidth">Petal Width (cm):</label>
+                <input type="range" id="petalWidth" min="0.1" max="2.5" step="0.1" value="1.2">
+                <span id="petalWidthValue" class="range-value">1.2</span>
+            </div>
+            <button id="predictBtn">Predict Species</button>
+        </section>
+
+        <section class="result-card">
+            <h2>Prediction Result</h2>
+            <p id="predictionOutput" class="initial-message">Set the values using sliders and click predict button</p>
+            <div id="loadingIndicator" class="hidden">Predicting...</div>
+            <div id="probabilitiesOutput" class="probabilities-section hidden">
+                </div>
+        </section>
+
+        <section class="color-legend">
+            <h3>Probability Legend</h3>
+            <ul>
+                <li><div class="color-box box-high"></div>Highest Probability</li>
+                <li><div class="color-box box-medium-high"></div>Medium-High Probability</li>
+                <li><div class="color-box box-medium-low"></div>Medium-Low Probability</li>
+                <li><div class="color-box box-low"></div>Lowest Probability</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Iris Predictor. Built with ❤️ by SSK.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

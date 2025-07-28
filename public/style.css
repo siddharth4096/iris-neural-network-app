@@ -1,0 +1,387 @@
+/* Basic Reset & Body Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette for Probabilities */
+    --color-high-prob: #28a745; /* Green for highest probability */
+    --color-medium-high-prob: #ffc107; /* Yellow/Orange for medium-high */
+    --color-medium-low-prob: #17a2b8; /* Teal for medium-low */
+    --color-low-prob: #dc3545; /* Red for lowest */
+    --color-default-prob: #6c757d; /* Grey for general/others */
+    --color-text-dark: #333;
+    --color-text-light: #fff;
+    --color-primary: #4CAF50; /* Green header, buttons */
+    --color-secondary: #8BC34A; /* Lighter green accents */
+    --color-prediction-text: #2196F3; /* Blue for main prediction */
+    --color-error-text: #f44336; /* Red for errors */
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #e0f2f7, #c1e4ed); /* Light blue/green gradient */
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Main Content Area */
+main {
+    flex: 1; /* Allows main to take up available space */
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+    justify-content: center;
+    align-items: flex-start; /* Align cards to the top */
+    padding: 2rem 1rem;
+    gap: 2rem; /* Space between cards */
+}
+
+/* Card Styling */
+.prediction-card, .result-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-top: 5px solid var(--color-secondary); /* Lighter green border top */
+}
+
+.prediction-card:hover, .result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.prediction-card h2, .result-card h2 {
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Input Group Styling */
+.input-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.input-group input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+}
+
+.input-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--color-secondary); /* Thumb color */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.input-group input[type="range"]::-webkit-slider-thumb:hover {
+    background: #689F38; /* Darker on hover */
+    transform: scale(1.1);
+}
+
+.range-value {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    font-weight: bold;
+    align-self: flex-end; /* Align value to the right */
+}
+
+/* Button Styling */
+button {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Result Card Specifics */
+.result-card {
+    text-align: center;
+    min-height: 250px; /* Ensure some height for content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#predictionOutput {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-prediction-text);
+    margin-top: 1rem;
+    word-break: break-word; /* For longer predictions */
+    transition: all 0.5s ease-in-out;
+}
+
+.initial-message {
+    color: #666;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+/* Loading Indicator */
+#loadingIndicator {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #777;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.hidden {
+    display: none !important; /* Use !important to ensure it overrides other display properties */
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* Probabilities Section */
+.probabilities-section {
+    margin-top: 1.5rem;
+    text-align: left; /* Align text within this section */
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+    width: 100%; /* Ensure it takes full width of parent */
+}
+
+.probabilities-section h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.probabilities-section ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.probabilities-section li {
+    /* background-color: #f9f9f9; */
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    color: var(--color-text-dark);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color changes */
+}
+
+/* Specific colors for probability list items, applied by JS */
+.prob-high {
+    background-color: var(--color-high-prob);
+    color: var(--color-text-light); /* White text on green */
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); /* Stronger shadow for highlight */
+}
+
+.prob-medium-high {
+    background-color: var(--color-medium-high-prob);
+    color: var(--color-text-dark); /* Dark text on yellow/orange */
+}
+
+.prob-medium-low {
+    background-color: var(--color-medium-low-prob);
+    color: var(--color-text-light); /* White text on teal */
+}
+
+.prob-low {
+    background-color: var(--color-low-prob);
+    color: var(--color-text-light); /* White text on red */
+}
+
+/* Color Legend Styling */
+.color-legend {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #eef;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: left;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.color-legend h3 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.color-legend ul {
+    list-style: none;
+    padding: 0;
+}
+
+.color-legend li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+}
+
+.color-legend .color-box {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    margin-right: 10px;
+    border: 1px solid rgba(0,0,0,0.1); /* Subtle border for visibility */
+}
+
+/* Assigning background colors to legend boxes */
+.color-legend .box-high { background-color: var(--color-high-prob); }
+.color-legend .box-medium-high { background-color: var(--color-medium-high-prob); }
+.color-legend .box-medium-low { background-color: var(--color-medium-low-prob); }
+.color-legend .box-low { background-color: var(--color-low-prob); }
+
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+    margin-top: auto; /* Pushes footer to the bottom */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .prediction-card, .result-card {
+        padding: 2rem;
+        max-width: 90%;
+    }
+
+    .prediction-card h2, .result-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .input-group label {
+        font-size: 1rem;
+    }
+
+    .range-value {
+        font-size: 1.1rem;
+    }
+
+    button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
+    }
+
+    #predictionOutput {
+        font-size: 1.5rem;
+    }
+
+    .color-legend {
+        padding: 1rem;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1.5rem 0.5rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .prediction-card, .result-card {
+        padding: 1.5rem;
+    }
+
+    .prediction-card h2, .result-card h2 {
+        font-size: 1.3rem;
+    }
+}
