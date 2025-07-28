@@ -89,7 +89,7 @@ npm install
 node server.js
 ```
 
-Make sure your MySQL server is running and the schema is created.
+Make sure MySQL server is running and the schema is created.
 
 ---
 
@@ -115,12 +115,8 @@ Make sure your MySQL server is running and the schema is created.
 
 ## 🤝 Let's Connect
 
-📧 your.email@example.com  
-🔗 [LinkedIn Profile](https://linkedin.com/in/yourname)  
+📧 siddarthkashyap46@gmail.com  
+🔗 [LinkedIn Profile](https://linkedin.com/in/siddharthkakoti)  
 🧠 I'm open to feedback, collaboration, and ideas!
 
----
 
-## 📄 License
-
-This project is licensed under the **MIT License**.
