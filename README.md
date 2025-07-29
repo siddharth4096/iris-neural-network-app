@@ -16,6 +16,8 @@
 ---
 
 ## 📷 Screenshots
+![Application Screenshot 1](https://github.com/siddharth4096/iris-neural-network-app/blob/d903e1c0030219681e4a7d2bbbbd4627942f1873/pic1.png)
+![Application Screenshot 2](https://github.com/siddharth4096/iris-neural-network-app/blob/d903e1c0030219681e4a7d2bbbbd4627942f1873/pic2.png)
 
 
 ## 🧠 Technologies Used
